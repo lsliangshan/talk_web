@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import '../static/js/theme'
 
 Vue.config.productionTip = false
 
@@ -11,5 +12,15 @@ new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: { App }
+  components: { App },
+  data: {
+    theme: 'teal',
+    appName: 'WebRTC',
+    request: {
+      baseUrl: 'http://talk_api.dei2.com',
+      path: {
+        login: '/index/login'
+      }
+    }
+  }
 })

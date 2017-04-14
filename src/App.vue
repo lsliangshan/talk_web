@@ -1,23 +1,52 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
     <router-view></router-view>
+
+    <md-snackbar :md-position="snackbar.vertical + ' ' + snackbar.horizontal" ref="snackbar" :md-duration="snackbar.duration">
+      <span v-text="snackbar.message"></span>
+      <md-button class="md-accent" :md-theme="theme" @click.native="$refs.snackbar.close()" v-text="snackbar.cancel"></md-button>
+    </md-snackbar>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  data: function () {
+    return {
+      theme: this.$root.theme,
+      snackbar: {
+        vertical: 'top',
+        horizontal: 'right',
+        duration: 4000,
+        cancel: '取消'
+      },
+      snackbarList: []
+    }
+  },
+  methods: {
+    openMessageBox: function (args) {
+      this.snackbar = Object.assign({}, this.snackbar, args)
+      this.$refs.snackbar.open()
+    }
+  }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  html, body {
+    height: 100%;
+  }
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
+    width: 100%;
+    height: 100%;
+  }
 </style>
