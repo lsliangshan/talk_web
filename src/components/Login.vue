@@ -92,20 +92,24 @@
             })
           } else {
             // 调用登录接口
-            $.post({
+            $.ajax({
+              cache: false,
+              type: 'POST',
               url: this.request.baseUrl + this.request.path.login,
               data: {
                 phonenum: this.formData.phonenum.value,
                 password: this.formData.password.value
               },
+              dataType: 'multipart/form-data',
+              async: true,
               success: function (res, textStatus, request) {
                 if (res.status === 1) {
                   // 登录成功
 //                  localStorage.setItem(location.href + 'userInfo', JSON.stringify(res.data))
 //                  that.$root.$router.replace('/')
-                  console.log('res: ', JSON.stringify(res))
+                  console.log('res2: ', JSON.stringify(res))
                   console.log('textStatus: ', JSON.stringify(textStatus))
-                  console.log('request: ', JSON.stringify(request))
+                  console.log('request2: ', request.getAllResponseHeaders('app-token'))
                 } else {
                   // 登录失败
                   that.openMessageBox({

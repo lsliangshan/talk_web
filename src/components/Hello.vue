@@ -8,6 +8,7 @@
 export default {
   name: 'hello',
   data () {
+    this.$router.replace('/login')
     return {
       msg: 'Coming soon...'
     }

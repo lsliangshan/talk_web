@@ -17,7 +17,8 @@ new Vue({
     theme: 'teal',
     appName: 'WebRTC',
     request: {
-      baseUrl: 'http://talk_api.dei2.com',
+      // baseUrl: 'http://talk_api.dei2.com',
+      baseUrl: 'http://127.0.0.1:3002',
       path: {
         login: '/index/login'
       }
